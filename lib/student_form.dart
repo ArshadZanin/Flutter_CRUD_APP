@@ -188,18 +188,18 @@ class StudentFormState extends State<StudentForm> {
 
                             _formKey.currentState!.save();
 
-                            User student = User(
-                              name: _name,
-                              age: _age,
-                              place: _place,
-                              email: _email,
-                            );
-
-                            List<User> listOfUser = [student];
+                            // User student = User(
+                            //   name: _name,
+                            //   age: _age,
+                            //   place: _place,
+                            //   email: _email,
+                            // );
+                            //
+                            // List<User> listOfUser = [student];
 
                             DatabaseHandler db = DatabaseHandler();
-
-                            await db.updateUser(listOfUser);
+                            // listOfUser
+                            await db.updateUser(widget.student!.id!, _name!, _age!, _place!, _email!);
 
                             Navigator.pushReplacement(
                               context,

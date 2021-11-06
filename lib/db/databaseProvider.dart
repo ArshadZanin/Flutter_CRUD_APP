@@ -65,19 +65,30 @@ class DatabaseHandler {
     return queryResult.map((e) => User.fromMap(e)).toList();
   }
 
-  Future<int> updateUser(List<User> users) async {
-    final db = await database;
-    int result = 0;
-    User userid = User();
+  // Future<int> updateUser(List<User> users) async {
+  //   final db = await database;
+  //   int result = 0;
+  //   User userid = User();
+  //
+  //   for (var user in users) {
+  //     result = await db!.update(
+  //       'users',
+  //       user.toMap(),
+  //       where: "id = ?",
+  //       whereArgs: [userid.id],
+  //     );
+  //   }
+  //   return result;
+  // }
 
-    for (var user in users) {
-      result = await db!.update(
-        'users',
-        user.toMap(),
-        where: "id = ?",
-        whereArgs: [userid.id],
-      );
-    }
+  Future<int> updateUser(int id, String name, String age, String place, String email) async {
+    final db = await database;
+
+    final data = {
+      'name': name, 'age': age, 'place': place, 'email': email
+    };
+
+    final result = await db!.update('users', data, where: "id = ?", whereArgs: [id]);
     return result;
   }
 
